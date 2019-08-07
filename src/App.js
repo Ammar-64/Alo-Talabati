@@ -5,6 +5,8 @@ import Categories from './Components/Categories';
 import BabyProducts from './Components/BabyProducts';
 import ContactPage from './Components/ContuctUs';
 import Footer from './Components/Footer';
+import About from './Components/Aboutus';
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
        <Categories />
        <BabyProducts/>
        <ContactPage/>
+       <About/>
        <Footer />
     </div>
   );
