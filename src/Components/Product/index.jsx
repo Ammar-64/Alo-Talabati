@@ -16,8 +16,7 @@ class Product extends React.Component{
         let quantity = this.props.quantity;
         let updateQuantity = this.props.updateQuantity;
         return (
-      <MDBRow my-5>
-        <MDBCol md="12" className="mb-lg-0 my-4">
+        <MDBContainer  className="my-3 px-n5" >
           <MDBCard wide ecommerce>
             <div>
             <MDBCardImage
@@ -51,8 +50,7 @@ class Product extends React.Component{
               </MDBCardFooter>
             </MDBCardBody>
           </MDBCard>
-        </MDBCol>
-    </MDBRow>
+    </MDBContainer>
   );
 }
 }

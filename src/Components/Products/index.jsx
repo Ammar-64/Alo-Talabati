@@ -74,12 +74,12 @@ class Products extends React.Component{
 
     render(){
         return (
-          <MDBContainer className={styles.body_container}>
+          <MDBContainer className="px-n5">
             <MDBRow>
             {
               Cards.map(function(currentValue){
                   console.log(this);
-                return (<MDBCol md="4">
+                return (<MDBCol md="4" >
                   <Product 
                   imageURL={currentValue.imageURL}
                   title={currentValue.title} 
