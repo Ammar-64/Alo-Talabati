@@ -1,10 +1,42 @@
 import React, { Component } from "react";
 import {
 MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,
-MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
+MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBBtn, MDBInput
 } from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
+import Logo from '../../img/logo.png'
 
+
+const Dropdown = [
+  { a:'#',
+  title: 'Food',
+},
+{ a:'#',
+  title: 'Drinks',
+},
+{ a:'#',
+  title: 'Grocery',
+},
+{ a:'#',
+  title: 'Sweets',
+},
+{ a:'#',
+  title: 'BabyCare',
+},
+{ a:'#',
+  title: 'Flowers',
+},
+{ a:'#',
+  title: 'Gifts',
+},
+{ a:'#',
+  title: 'Tech',
+},
+{ a:'#',
+  title: 'Toys',
+}
+
+]
 class Navbar extends Component {
 state = {
   isOpen: false
@@ -14,35 +46,45 @@ toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
 
+
 render() {
   return (
     <Router>
-      <MDBNavbar color="indigo" dark expand="md">
+      <MDBNavbar color="white" light outline expand="md" >
         <MDBNavbarBrand>
-          <strong className="white-text">Navbar</strong>
+          <a href='#!' ><img src={Logo} alr='Alo-Talabati' className='w-50'/></a>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
-            <MDBNavItem active>
-              <MDBNavLink to="#!">Home</MDBNavLink>
+            <MDBNavItem active >
+            <MDBBtn href="#" color="warning" active>
+            Home
+      </MDBBtn>{/*<MDBNavLink to="#!" outline color="warning">Home</MDBNavLink>*/}
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!">Features</MDBNavLink>
+            <MDBBtn href="#"  color="warning">
+            About Us
+      </MDBBtn>
+          
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!">Pricing</MDBNavLink>
+            <MDBBtn href="#"  color="warning">
+            Contact Us
+      </MDBBtn>
+              
             </MDBNavItem>
             <MDBNavItem>
               <MDBDropdown>
-                <MDBDropdownToggle nav caret>
-                  <span className="mr-2">Dropdown</span>
+         
+                <MDBDropdownToggle color="warning" caret>
+                  <span className="mr-2">Categories</span>
                 </MDBDropdownToggle>
+
                 <MDBDropdownMenu>
-                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                {Dropdown.map(currentVlaue => 
+                  <MDBDropdownItem href={currentVlaue.a}>{currentVlaue.title}</MDBDropdownItem>
+                )}
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavItem>
@@ -50,8 +92,8 @@ render() {
           <MDBNavbarNav right>
             <MDBNavItem>
               <MDBFormInline waves>
-                <div className="md-form my-0">
-                  <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+                <div className="md-form my-0">               
+                <MDBInput hint="Search" type="text" containerClass="active-pink active-pink-2 mt-0 mb-3" />   
                 </div>
               </MDBFormInline>
             </MDBNavItem>
