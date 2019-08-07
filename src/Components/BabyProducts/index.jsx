@@ -1,50 +1,31 @@
 import React from 'react';
-import Category from '../Category';
+import BabyProduct from '../BabyProduct';
 import styles from '../../styles.module.css';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-import Grocery from '../../img/Grocery.png';
-import Food from '../../img/Food.png';
-import Sweets from '../../img/Sweets.png';
-import Flowers from '../../img/Flowers.png';
-import Gifts from '../../img/Gifts.png';
-import Tech from '../../img/Tech.png';
-import Drinks from '../../img/Drinks.png';
-import Toys from '../../img/Toys.png';
-import BabeCare from '../../img/BabeCare.png';
+import Banana from '../../img/Grocery/Banana.png';
+import Orange from '../../img/Grocery/Orange.png';
+import Tomato from '../../img/Grocery/Tomato.png';
+
 
 
 const Cards = [
-    {title: "Food", 
-     imageURL: Food,
-     
-     },
-    {title: "BabyCare", 
-    imageURL: BabeCare,
-      },
-    {title: "Flowers", 
-    imageURL: Flowers,
-   },
-   {title: "Grocery", 
-     imageURL: Grocery,
-     },
-    {title: "Sweets", 
-    imageURL: Sweets,
-      },
-    {title: "Gifts", 
-    imageURL: Gifts,
-   },
-   {title: "Tech", 
-     imageURL: Tech,
-     },
-    {title: "Drinks", 
-    imageURL: Drinks,
-      },
-    {title: "Toys", 
-    imageURL: Toys,
-   },
-  ]
+  {title: "BabyOil", 
+   imageURL: Banana,
+   details: "1 piece",
+   price: '13'},
+   {title: "Pampers", 
+   imageURL: Orange,
+   details: "1 kg",
+   price: '13'},
+   {title: "FeedingBottle", 
+   imageURL: Tomato,
+   details: "1 kg",
+   price: '13'},
+   
+]
 
-class Categories extends React.Component{
+
+class BabyProducts extends React.Component{
     state = {
         quantity: 1,
     };
@@ -71,7 +52,7 @@ class Categories extends React.Component{
               Cards.map(function(currentValue){
                   console.log(this);
                 return (<MDBCol md="4">
-                  <Category 
+                  <BabyProduct 
                   imageURL={currentValue.imageURL}
                   title={currentValue.title} 
                   details={currentValue.details} 
@@ -88,4 +69,4 @@ class Categories extends React.Component{
     }
 }
 
-export default Categories;
+export default BabyProducts;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Product from '../Product'
-import styles from '../../styles.module.css'
+import Product from '../Product';
+import styles from '../../styles.module.css';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import Banana from '../../img/Grocery/Banana.png';
 import Orange from '../../img/Grocery/Orange.png';
