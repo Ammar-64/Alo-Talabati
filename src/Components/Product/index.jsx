@@ -4,18 +4,53 @@ import { MDBBtn, MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBCardTitl
 import Styles from './styles.module.css';
 
 class Product extends React.Component{
-    componentDidMount(props){
 
-    }
+  state = {
+    selectedProduct: {},
+    isAdded: false,
+    quantity: 1
+  };
 
-    increaseFavorite = () =>{
-        this.setState({ favoriteCount: this.state.favoriteCount + 1});
+
+  increment() {
+    this.setState((state) => {
+        return {quantity: state.quantity + 1};
+      });
+  }
+
+  decrement() {
+    if (this.state.quantity <= 1) {
+      return this.state.quantity;
+    } else {
+        this.setState((state) => {
+            return {quantity: state.quantity - 1};
+          });
     }
+  }
+
+  addToCart(image, name, price, quantity) {
+    this.setState(
+    {
+        selectedProduct: {
+        image: image,
+        title: name,
+        price: price,
+        Quantity: quantity
+        }
+    },
+    function() {
+        this.props.addToCart(this.state.selectedProduct);
+    }
+    );
+    this.setState(
+    {
+        isAdded: true
+    }
+    );
+}
 
     render(){     
       const { title, imageURL, details, price } = this.props   
-        let quantity = this.props.quantity;
-        let updateQuantity = this.props.updateQuantity;
         return (
         <MDBContainer  className="my-3 px-n5" >
           <MDBCard wide ecommerce>
@@ -42,10 +77,17 @@ class Product extends React.Component{
               </MDBCardText>
               <MDBCardFooter>               
                 <span>
-                <Counter
-                         Quantity={quantity}
-                         UpdateQuantity={updateQuantity}/>
-                         <MDBBtn size="md" color='warning'>add to cart</MDBBtn>
+                <Counter 
+                quantity={this.state.quantity}
+                incrementQuantity={this.increment.bind(this)}
+                decrementQuantity={this.decrement.bind(this)}/>
+                <MDBBtn size="md" color='warning' onClick={this.addToCart.bind(
+                      this,
+                      imageURL,
+                      title,
+                      price,
+                      this.state.quantity                        
+                      )}>add to cart</MDBBtn>
                 </span>
               </MDBCardFooter>
             </MDBCardBody>

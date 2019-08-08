@@ -34,9 +34,10 @@ class Products extends React.Component{
                   imageURL={product.fields.imageURL.stringValue}
                   title={product.fields.title.stringValue} 
                   details={product.fields.details.stringValue} 
-                  price={product.fields.price.stringValue}
+                  price={product.fields.price.integerValue}
                   quantity={this.state.quantity}
                   updateQuantity={this.updateQuantity}
+                  addToCart={this.props.addToCart}
                   />
                 </MDBCol>)
               )
