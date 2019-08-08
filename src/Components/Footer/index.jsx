@@ -15,7 +15,7 @@ const Footer = () => {
           </MDBCol>
           <MDBCol md="6">
           <MDBRow>
-            <h5 className="title">Follow us on social media</h5>
+            <h5 className="title">Follow us on social media:</h5>
             <ul className="d-flex">
               <li className="list-unstyled mx-3">
                 <a href="#!"><MDBIcon className="fa-2x" fab icon="facebook-square" /></a>

@@ -36,7 +36,6 @@ showDropdownMenu(event) {
 
           { this.state.displayMenu ? (
           <ul>
-         <li><a className={styles.active}  href="#Create Page">Create Page</a></li>
          <li><a href="#Manage Pages">Food</a></li>
          <li><a href="#Create Ads">Drinks</a></li>
          <li><a href="#Manage Ads">Grocery</a></li>
