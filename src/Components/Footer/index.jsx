@@ -18,13 +18,13 @@ const Footer = () => {
             <h5 className="title">Follow us on social media</h5>
             <ul className="d-flex">
               <li className="list-unstyled mx-3">
-                <a href="#!"><MDBIcon size="lg" fab icon="facebook-square" /></a>
+                <a href="#!"><MDBIcon className="fa-2x" fab icon="facebook-square" /></a>
               </li>
               <li className="list-unstyled mx-3">
-                <a href="#!"><MDBIcon size="lg" fab icon="instagram" /></a>
+                <a href="#!"><MDBIcon className="fa-2x" fab icon="instagram" /></a>
               </li>
               <li className="list-unstyled mx-3">
-                <a href="#!"><MDBIcon size="lg" fab icon="twitter-square" /></a>
+                <a href="#!"><MDBIcon className="fa-2x" fab icon="twitter-square" /></a>
               </li>
             </ul>
             </MDBRow>

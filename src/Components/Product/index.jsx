@@ -39,13 +39,12 @@ class Product extends React.Component{
                   <strong>{this.props.price} TRY</strong>
                 </span>
               </MDBCardText>
-              <MDBCardFooter className="px-1">
-               
+              <MDBCardFooter>               
                 <span>
                 <Counter
                          Quantity={quantity}
                          UpdateQuantity={updateQuantity}/>
-                         <MDBBtn size="sm">add to cart</MDBBtn>
+                         <MDBBtn size="md" color='warning'>add to cart</MDBBtn>
                 </span>
               </MDBCardFooter>
             </MDBCardBody>

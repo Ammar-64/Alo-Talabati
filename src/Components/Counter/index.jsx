@@ -30,20 +30,20 @@ class Counter extends Component {
 
   render() {
     return (
-      <div className={styles.stepper_input}>
-        <MDBBtn onClick={this.decrement} stag="a" size="lg" floating>
-        <MDBIcon far icon="minus-square" />
-        </MDBBtn>
+      <div className='d-flex justify-content-center' class='height:10px'>
+        <button onClick={this.decrement} type="button" class="btn btn-warning px-3">
+          <MDBIcon far icon="minus-square" />
+        </button>
         {/* <a href="#" className={styles.decrement} onClick={this.decrement}>
           –
         </a> */}
         <input
-          className={styles.quantity}
+          className="w-25 d-inline-block text-center"
           value={this.state.value}
         />
-        <MDBBtn onClick={this.increment} tag="a" size="lg" floating>
+         <button onClick={this.increment} type="button" class="btn btn-warning px-3">       
         <MDBIcon far icon="plus-square" />
-        </MDBBtn>
+        </button>
         {/* <a href="#" className={styles.increment} onClick={this.increment}>
           +
         </a> */}
