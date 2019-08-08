@@ -4,6 +4,7 @@ const BASE_URL = 'https://firestore.googleapis.com/v1'
 class Product extends React.Component {
     state = {
         products: null,
+        
       }
 
     componentDidMount() {
@@ -24,6 +25,8 @@ class Product extends React.Component {
     return (
       <ProductsComponent
           products={this.state.products}
+          addToCart={this.props.addToCart}
+          cart={this.props.cart}
       />
     )
   }
