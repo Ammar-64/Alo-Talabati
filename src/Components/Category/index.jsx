@@ -1,6 +1,7 @@
 import React from "react";
 import styles from './styles.module.css'
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardFooter, MDBIcon, MDBTooltip,  MDBBadge, MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBBtn } from "mdbreact";
+import { MDBRow, MDBCol, MDBCard, MDBCardImage, MDBIcon } from "mdbreact";
+import { NavLink } from 'react-router-dom';
 
 class Category extends React.Component{
 
@@ -22,11 +23,11 @@ class Category extends React.Component{
                     />
                 
                 <div className={styles.stripe}>
-                    <a href="#!" class="dark-grey-text">
+                    <NavLink to={title} exact class="dark-grey-text">
                     <p>
                         {title} <MDBIcon icon="angle-right" />
                     </p>
-                    </a>
+                    </NavLink>
                 </div>
                 </div>
             </MDBCard>

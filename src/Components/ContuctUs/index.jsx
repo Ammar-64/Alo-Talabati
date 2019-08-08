@@ -99,8 +99,8 @@ const ContactPage = () => {
               <MDBBtn tag="a" floating color="blue" className="accent-1">
                 <MDBIcon icon="envelope" />
               </MDBBtn>
-              <p>alo-talabati@gmail.com</p>
-              <p className="mb-md-0">alo-talabati@gmail.com</p>
+              <p>info@alo-talabati.com</p>
+              <p className="mb-md-0">info@alo-talabati.com</p>
             </MDBCol>
           </MDBRow>
         </MDBCol>

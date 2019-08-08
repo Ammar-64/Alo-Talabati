@@ -3,9 +3,19 @@ import {
 MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,
 MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBBtn, MDBInput
 } from "mdbreact";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Logo from '../../img/logo.png'
+import { NavLink } from 'react-router-dom';
 
+const link = {
+  width: '120px',
+  padding: '12px',
+  margin: '0 6px 6px',
+  background: 'orange',
+  textDecoration: 'none',
+  color: 'white',
+  textAlign: 'center',
+}
 
 const Dropdown = [
   { a:'#',
@@ -49,41 +59,34 @@ toggleCollapse = () => {
 
 render() {
   return (
-    <Router>
       <MDBNavbar color='white' light outline expand="md">
         <MDBNavbarBrand>
-          <a href='#!' ><img src={Logo} alr='Alo-Talabati' className='w-50'/></a>
+          <NavLink to="/" exact><img src={Logo} alr='Alo-Talabati' className='w-50'/></NavLink>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
-            <MDBNavItem active >
-            <MDBBtn href="#" color="warning" active>
-            Home
-      </MDBBtn>{/*<MDBNavLink to="#!" outline color="warning">Home</MDBNavLink>*/}
+            <MDBNavItem>
+           <MDBNavLink to="/" exact style={link} activeStyle={{background: 'darkorange'}} >Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-            <MDBBtn href="#"  color="warning">
-            About Us
-      </MDBBtn>
+            <MDBNavLink to="/About" exact style={link} activeStyle={{background: 'darkorange'}}>About</MDBNavLink>
           
             </MDBNavItem>
             <MDBNavItem>
-            <MDBBtn href="#"  color="warning">
-            Contact Us
-      </MDBBtn>
+            <MDBNavLink to="/ContuctUs" exact style={link} activeStyle={{background: 'darkorange'}}>Contuct Us</MDBNavLink>
               
             </MDBNavItem>
             <MDBNavItem>
               <MDBDropdown>
          
                 <MDBDropdownToggle color="warning" caret>
-                  <span className="mr-2">Categories</span>
+                  <span>Categories</span>
                 </MDBDropdownToggle>
 
                 <MDBDropdownMenu>
                 {Dropdown.map(currentVlaue => 
-                  <MDBDropdownItem href={currentVlaue.a}>{currentVlaue.title}</MDBDropdownItem>
+                  <MDBDropdownItem><NavLink to={currentVlaue.title}>{currentVlaue.title}</NavLink></MDBDropdownItem>
                 )}
                 </MDBDropdownMenu>
               </MDBDropdown>
@@ -100,7 +103,6 @@ render() {
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
-    </Router>
     );
   }
 }
