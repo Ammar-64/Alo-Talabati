@@ -4,7 +4,8 @@ import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBCa
 
 class Category extends React.Component{
 
-    render(){        
+    render(){    
+        const { title, imageURL } = this.props    
         return (
   
     <MDBRow>
@@ -13,9 +14,9 @@ class Category extends React.Component{
                 <div className="view zoom">
                 <MDBCardImage
                     cascade
-                    src={this.props.imageURL}
+                    src={imageURL}
                     top
-                    alt={this.props.title}
+                    alt={title}
                     width="100"
                     height="350"
                     />
@@ -23,7 +24,7 @@ class Category extends React.Component{
                 <div className={styles.stripe}>
                     <a href="#!" class="dark-grey-text">
                     <p>
-                        {this.props.title} <MDBIcon icon="angle-right" />
+                        {title} <MDBIcon icon="angle-right" />
                     </p>
                     </a>
                 </div>

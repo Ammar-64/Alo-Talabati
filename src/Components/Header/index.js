@@ -50,7 +50,7 @@ toggleCollapse = () => {
 render() {
   return (
     <Router>
-      <MDBNavbar color='white' light outline expand="md" >
+      <MDBNavbar color='white' light outline expand="md">
         <MDBNavbarBrand>
           <a href='#!' ><img src={Logo} alr='Alo-Talabati' className='w-50'/></a>
         </MDBNavbarBrand>

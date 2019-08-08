@@ -1,5 +1,5 @@
 import React from 'react';
-import BabyProductsComponent from '../../Components/BabyProducts'
+import ProductsComponent from '../../Components/Products'
 const BASE_URL = 'https://firestore.googleapis.com/v1'
 class BabyProducts extends React.Component {
     state = {
@@ -22,7 +22,7 @@ class BabyProducts extends React.Component {
       return (<h1>Loading ...</h1>);
     }
     return (
-      <BabyProductsComponent
+      <ProductsComponent
           products={this.state.products}
       />
     )
