@@ -31,7 +31,7 @@ class Product extends React.Component{
             <MDBCardBody cascade className="text-center">
               <MDBCardTitle>
                 <strong>
-                  <a href="#">{title}</a>
+                  {title}
                 </strong>
               </MDBCardTitle>
               <MDBCardText>

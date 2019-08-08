@@ -5,7 +5,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBAnimation } from "mdbreact";
 
 function Categories ({categories}){
     return (
-      <MDBAnimation type="tada" reveal> 
+      
       <MDBContainer className={styles.body_container}>
         <MDBRow>
         {
@@ -22,7 +22,7 @@ function Categories ({categories}){
         }
       </MDBRow>
       </MDBContainer>
-      </MDBAnimation>
+      
     )
 }
 
