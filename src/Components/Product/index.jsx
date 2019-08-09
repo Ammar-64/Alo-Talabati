@@ -53,12 +53,11 @@ class Product extends React.Component{
       const { title, imageURL, details, price } = this.props   
         return (
         <MDBContainer  className="my-3 px-n5" >
-          <MDBCard wide ecommerce>
+          <MDBCard  wide ecommerce className={Styles.card}>
             <div>
             <MDBCardImage
-              cascade
               src={imageURL}
-              top
+              
               alt={title}
               className={Styles.img}
             />

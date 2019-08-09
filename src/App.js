@@ -62,6 +62,8 @@ class App extends React.Component {
     const ShoppingCartRoute = () => <ShoppingCart cart={this.state.cart} removeFromCart={this.removeFromCart}/>
     const Grocery = () => <Product type={'Products'} cart={this.state.cart} addToCart={this.addToCart}/>
     const BabyCare = () => <Product type={'BabyProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+    const Food = () => <Product type={'FoodProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+    const Toys = () => <Product type={'ToysProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
 
   return (
     <div className="bg-light">
@@ -73,6 +75,8 @@ class App extends React.Component {
           <Route exact path="/" component={Categories} />
           <Route exact path="/Grocery" component={Grocery} />
           <Route exact path="/BabyCare" component={BabyCare} />
+          <Route exact path="/Food" component={Food} />
+          <Route exact path="/Toys" component={Toys} />
           <Route exact path="/About" component={About} />
           <Route exact path="/ContuctUs" component={ContuctUs} />
           <Route path="/" component={Footer} />

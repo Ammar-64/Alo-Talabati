@@ -8,8 +8,8 @@ class Counter extends Component {
   render() {
     return (
       <div className='d-flex justify-content-center' class='height:10px'>
-        <button onClick={this.props.decrementQuantity} type="button" class="btn btn-warning px-3">
-          <MDBIcon far icon="minus-square" />
+        <button onClick={this.props.decrementQuantity} type="button" class="btn  p-1">
+          <MDBIcon icon="minus" />
         </button>
         {/* <a href="#" className={styles.decrement} onClick={this.decrement}>
           –
@@ -18,9 +18,8 @@ class Counter extends Component {
           className="w-25 d-inline-block text-center"
           value={this.props.quantity}
         />
-         <button onClick={this.props.incrementQuantity} type="button" class="btn btn-warning px-3">       
-        <MDBIcon far icon="plus-square" />
-        </button>
+         <button onClick={this.props.incrementQuantity} type="button" class="btn  p-1">       
+         <MDBIcon icon="plus" />        </button>
         {/* <a href="#" className={styles.increment} onClick={this.increment}>
           +
         </a> */}
