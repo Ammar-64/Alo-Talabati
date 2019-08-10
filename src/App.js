@@ -8,6 +8,7 @@ import ContuctUs from './Components/ContuctUs';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ShoppingCart from './Components/ShoppingCart';
 import {toast, ToastContainer, MDBNotification } from "mdbreact";
+import EmptySpace from './Components/EmptySpace'
 
 class App extends React.Component {
   constructor() {
@@ -88,8 +89,9 @@ class App extends React.Component {
     <Router>
         <React.Fragment>      
           <Route path="/" component={Navbar} />
+          <Route path="/" component={EmptySpace} />
           <Route path="/" component={ShoppingCartRoute} />
-          <Route exact path="/" component={Categories} />
+          <Route exact path="/" component={Categories} />          
           <Route exact path="/Grocery" component={Grocery} />
           <Route exact path="/BabyCare" component={BabyCare} />
           <Route exact path="/About" component={About} />

@@ -43,23 +43,24 @@ class ShoppingCart extends Component {
       showButton = true;
     }
     return (
-        <div className={styles.shoppingCartButton}>
+        <div className={styles.shoppingCartButton}  className="position-fixed float-left" style={{zIndex:100}}>
 
           <MDBPopover
             placement="bottom"
             popover
             clickable
-            id="popper3">
+            id="popper3"
+            >
             
-              <MDBBtn>
-              <span badgeContent={cartItems.length} class="badge badge-danger ml-2"><i class="fas fa-shopping-cart"></i></span>
+              <MDBBtn color="warning">
+              <i class="fas fa-shopping-cart"><span class="badge badge-pill ml-2">{cartItems.length}</span></i>
               </MDBBtn>
         
             <MDBContainer >
               <MDBPopoverBody className={styles.shoppingCart}>
                 {view}
                 {showButton &&
-                <MDBBtn variant="contained" color="secondary" onClick={this.toggle(14)}>Proceed to checkout</MDBBtn>}
+                <MDBBtn variant="contained" color="warning" onClick={this.toggle(14)}>Proceed to checkout</MDBBtn>}
               </MDBPopoverBody>
             </MDBContainer>
           </MDBPopover>
@@ -71,7 +72,7 @@ class ShoppingCart extends Component {
               close={this.toggle(14)}/>
             </MDBModalBody>
             <MDBModalFooter>
-              <MDBBtn color="secondary" onClick={this.toggle(14)}>Close</MDBBtn>
+              <MDBBtn color="warning" onClick={this.toggle(14)}>Close</MDBBtn>
             </MDBModalFooter>
           </MDBModal>   
         </div>
