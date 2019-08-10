@@ -83,10 +83,8 @@ class App extends React.Component {
     const ShoppingCartRoute = () => <ShoppingCart cart={this.state.cart} removeFromCart={this.removeFromCart}/>
     const Grocery = () => <Product type={'Products'} cart={this.state.cart} addToCart={this.addToCart}/>
     const BabyCare = () => <Product type={'BabyProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
-<<<<<<< HEAD
     const Drinks = () => <Product type={'DrinksProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
     const Gifts = () => <Product type={'GiftsProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
-=======
     const Food = () => <Product type={'FoodProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
     const Toys = () => <Product type={'ToysProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
     const Flowers = () => <Product type={'FlowersProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
@@ -96,7 +94,6 @@ class App extends React.Component {
 
 
 
->>>>>>> abae921bb42b0bf53d70e5803a4017cfb5ed6158
 
   return (
     <div className="bg-light">
