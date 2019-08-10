@@ -24,22 +24,27 @@ class Products extends React.Component{
 
   render(){
     const {products} = this.props;
+
      return (
           <MDBContainer className="px-n5" >  
           <MDBRow className ="justify-content-md-center">   
             {
-              products.map(product => (
+              products.map(product => {
+                const data = product.data();
+                return (
                  <MDBCol md="3">
                   <Product 
-                  imageURL={product.fields.imageURL.stringValue}
-                  title={product.fields.title.stringValue} 
-                  details={product.fields.details.stringValue} 
-                  price={product.fields.price.integerValue}
+                  imageURL={data.imageURL}
+                  title={data.title} 
+                  details={data.details} 
+                  price={data.price}
                   quantity={this.state.quantity}
                   updateQuantity={this.updateQuantity}
                   addToCart={this.props.addToCart}
                   />
-                </MDBCol>)
+                </MDBCol>
+                )
+              }
               )
             }
           </MDBRow>

@@ -7,20 +7,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Logo from '../../img/logo.png'
 import { NavLink } from 'react-router-dom';
 import ShoppingCart from '../ShoppingCart';
-import * as firebase from 'firebase';
-import 'firebase/database';
+
 import { debug } from "util";
-const firebaseConfig = {
-  apiKey: "AIzaSyBnD1RdeD5iNw_y3cahx8ajMebkDyT_dH8",
-  authDomain: "alo-talabati.firebaseapp.com",
-  databaseURL: "https://alo-talabati.firebaseio.com",
-  projectId: "alo-talabati",
-  storageBucket: "alo-talabati.appspot.com",
-  messagingSenderId: "753646471377",
-  appId: "1:753646471377:web:a40c87b191bbb110"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
 
 const link = {
   width: '120px',
@@ -80,30 +68,12 @@ search = (e) => {
   if (e.key === 'Enter') {
     e.preventDefault()
     console.log('searchProducts')
-    this.searchProducts({
-      search: this.state.value
-    })
+    this.props.fetchProducts(['title', '==', this.state.value])
   }
 }
 onChange = e => {
   this.setState({ value: e.target.value })
 }
-searchProducts = async ({
-  search = '',
-  limit = 50,
-} = {}) => {
-  debugger
-  const snapshot = await db.collection('Poducts')
-    .where('name', '==', search)
-    .orderBy('name')
-    .limit(limit)
-    .get();
-    debugger
-  return snapshot.docs;
-};
-
-
-
 render(){
    
 const ShoppingCartRoute = () => <ShoppingCart cart={this.props.cart} removeFromCart={this.props.removeFromCart}/>
@@ -124,7 +94,7 @@ const ShoppingCartRoute = () => <ShoppingCart cart={this.props.cart} removeFromC
           
             </MDBNavItem>
             <MDBNavItem>
-            <MDBNavLink to="/ContuctUs" exact style={link} activeStyle={{background: 'darkorange'}}>Contuct Us</MDBNavLink>
+            <MDBBtn href="/ContuctUs" exact color="warning">Contuct Us</MDBBtn>
               
             </MDBNavItem>
             <MDBNavItem>
