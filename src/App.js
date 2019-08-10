@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Components/Header';
 import Categories from './Containers/Categories';
 import Product from './Containers/Product';
+import Feedback from './Containers/Feedback';
 import Footer from './Components/Footer';
 import About from './Components/About';
 import ContuctUs from './Components/ContuctUs';
@@ -82,8 +83,20 @@ class App extends React.Component {
     const ShoppingCartRoute = () => <ShoppingCart cart={this.state.cart} removeFromCart={this.removeFromCart}/>
     const Grocery = () => <Product type={'Products'} cart={this.state.cart} addToCart={this.addToCart}/>
     const BabyCare = () => <Product type={'BabyProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+<<<<<<< HEAD
     const Drinks = () => <Product type={'DrinksProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
     const Gifts = () => <Product type={'GiftsProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+=======
+    const Food = () => <Product type={'FoodProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+    const Toys = () => <Product type={'ToysProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+    const Flowers = () => <Product type={'FlowersProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+    const Sweets = () => <Product type={'SweetsProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+    const Tech = () => <Product type={'TechProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+
+
+
+
+>>>>>>> abae921bb42b0bf53d70e5803a4017cfb5ed6158
 
   return (
     <div className="bg-light">
@@ -98,8 +111,15 @@ class App extends React.Component {
           <Route exact path="/Drinks" component={Drinks} />
           <Route exact path="/Gifts" component={Gifts} />
           <Route exact path="/BabyCare" component={BabyCare} />
+          <Route exact path="/Food" component={Food} />
+          <Route exact path="/Toys" component={Toys} />
+          <Route exact path="/Flowers" component={Flowers} />
+          <Route exact path="/Sweets" component={Sweets} />
+          <Route exact path="/Tech" component={Tech} />
           <Route exact path="/About" component={About} />
           <Route exact path="/ContuctUs" component={ContuctUs} />
+          <Route exact path="/Feedback" component={Feedback} />
+
           <Route path="/" component={Footer} />
         </React.Fragment>
     </Router> 
