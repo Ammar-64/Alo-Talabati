@@ -8,6 +8,7 @@ import About from './Components/About';
 import ContuctUs from './Components/ContuctUs';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ShoppingCart from './Components/ShoppingCart';
+import {toast, ToastContainer, MDBNotification } from "mdbreact";
 
 class App extends React.Component {
   constructor() {
@@ -37,8 +38,26 @@ class App extends React.Component {
     this.setState({
       cart: cartItem
     });
-    debugger
   }
+
+  // notificationShow(){
+  //   return (
+  //     <MDBNotification
+  //       show
+  //       fade
+  //       iconClassName="text-primary"
+  //       title="Bootstrap"
+  //       message="Hello, world! This is a toast message."
+  //       text="11 mins ago"
+  //       style={{
+  //         position: "fixed",
+  //         top: "10px",
+  //         right: "10px",
+  //         zIndex: 9999
+  //       }}
+  //     />
+  //   );
+  // }
 
   removeFromCart(selectedProducts){
     debugger
@@ -63,6 +82,7 @@ class App extends React.Component {
     const ShoppingCartRoute = () => <ShoppingCart cart={this.state.cart} removeFromCart={this.removeFromCart}/>
     const Grocery = () => <Product type={'Products'} cart={this.state.cart} addToCart={this.addToCart}/>
     const BabyCare = () => <Product type={'BabyProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+<<<<<<< HEAD
     const Food = () => <Product type={'FoodProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
     const Toys = () => <Product type={'ToysProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
     const Flowers = () => <Product type={'FlowersProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
@@ -72,6 +92,8 @@ class App extends React.Component {
 
 
 
+=======
+>>>>>>> 395448fc5ea1eed71af806da94316a986cc089cc
 
   return (
     <div className="bg-light">
@@ -83,11 +105,14 @@ class App extends React.Component {
           <Route exact path="/" component={Categories} />
           <Route exact path="/Grocery" component={Grocery} />
           <Route exact path="/BabyCare" component={BabyCare} />
+<<<<<<< HEAD
           <Route exact path="/Food" component={Food} />
           <Route exact path="/Toys" component={Toys} />
           <Route exact path="/Flowers" component={Flowers} />
           <Route exact path="/Sweets" component={Sweets} />
           <Route exact path="/Tech" component={Tech} />
+=======
+>>>>>>> 395448fc5ea1eed71af806da94316a986cc089cc
           <Route exact path="/About" component={About} />
           <Route exact path="/ContuctUs" component={ContuctUs} />
           <Route exact path="/Feedback" component={Feedback} />
