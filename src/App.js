@@ -7,6 +7,8 @@ import About from './Components/About';
 import ContuctUs from './Components/ContuctUs';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import ShoppingCart from './Components/ShoppingCart';
+import {toast, ToastContainer, MDBNotification } from "mdbreact";
+import EmptySpace from './Components/EmptySpace'
 
 class App extends React.Component {
   constructor() {
@@ -36,8 +38,26 @@ class App extends React.Component {
     this.setState({
       cart: cartItem
     });
-    debugger
   }
+
+  // notificationShow(){
+  //   return (
+  //     <MDBNotification
+  //       show
+  //       fade
+  //       iconClassName="text-primary"
+  //       title="Bootstrap"
+  //       message="Hello, world! This is a toast message."
+  //       text="11 mins ago"
+  //       style={{
+  //         position: "fixed",
+  //         top: "10px",
+  //         right: "10px",
+  //         zIndex: 9999
+  //       }}
+  //     />
+  //   );
+  // }
 
   removeFromCart(selectedProducts){
     debugger
@@ -70,8 +90,9 @@ class App extends React.Component {
     <Router>
         <React.Fragment>      
           <Route path="/" component={Navbar} />
+          <Route path="/" component={EmptySpace} />
           <Route path="/" component={ShoppingCartRoute} />
-          <Route exact path="/" component={Categories} />
+          <Route exact path="/" component={Categories} />          
           <Route exact path="/Grocery" component={Grocery} />
           <Route exact path="/Drinks" component={Drinks} />
           <Route exact path="/BabyCare" component={BabyCare} />

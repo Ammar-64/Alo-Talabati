@@ -26,10 +26,10 @@ class Products extends React.Component{
     const {products} = this.props;
      return (
           <MDBContainer className="px-n5" >  
-          <MDBRow>   
+          <MDBRow className ="justify-content-md-center">   
             {
               products.map(product => (
-                 <MDBCol md="4">
+                 <MDBCol md="3">
                   <Product 
                   imageURL={product.fields.imageURL.stringValue}
                   title={product.fields.title.stringValue} 

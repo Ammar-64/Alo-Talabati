@@ -3,18 +3,9 @@ import { MDBCol, MDBContainer, MDBRow, MDBFooter, MDBIcon } from "mdbreact";
 
 const Footer = () => {
   return (
-    <MDBFooter color="amber" className="font-small pt-4 mt-4">
-      <MDBContainer fluid className="text-center text-md-left">
-        <MDBRow>
-          <MDBCol md="6">
-            <h5 className="title">Footer Content</h5>
-            <p>
-              Here you can use rows and columns here to organize your footer
-              content.
-            </p>
-          </MDBCol>
-          <MDBCol md="6">
-          <MDBRow>
+    <MDBFooter color="amber" className="font-small pt-2 mt-4">
+      <MDBContainer fluid >
+          <MDBRow className ="justify-content-md-center"> 
             <h5 className="title">Follow us on social media:</h5>
             <ul className="d-flex">
               <li className="list-unstyled mx-3">
@@ -28,8 +19,6 @@ const Footer = () => {
               </li>
             </ul>
             </MDBRow>
-          </MDBCol>
-        </MDBRow>
       </MDBContainer>
       <div className="footer-copyright text-center py-3">
         <MDBContainer fluid>

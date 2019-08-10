@@ -1,346 +1,228 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import TableFooter from '@material-ui/core/TableFooter';
+import React, { Component } from "react";
+  import { MDBContainer, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBBtn,
+    MDBTable, MDBTableBody, MDBTableHead,MDBInput, MDBRow, MDBCol } from "mdbreact";
 
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`wrapped-tabpanel-${index}`}
-      aria-labelledby={`wrapped-tab-${index}`}
-      {...other}
-    >
-      <Box p={3}>{children}</Box>
-    </Typography>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `wrapped-tab-${index}`,
-    'aria-controls': `wrapped-tabpanel-${index}`,
-  };
-}
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-  },
-}));
-
-
-
-
-const CheckoutProcess = (props) =>{
-
-  const classes = useStyles();
-  const [value, setValue] = React.useState('one');
-
-  function handleChange(event, newValue) {
-    setValue(newValue);
-  }
-
-  const [tab3Disable, setTab3Disable] = React.useState(true);
-
-  function handleTab3DisableChange(event, newValue) {
-    setTab3Disable(tab3Disable => newValue);
-  }
-
-  const [Tab2values, setTab2Values] = useState({name:"", 
-  phone: "",
-  city: "",
-  neighborhood: "",
-  street: "",
-  building: "",
-  apartment: "",
-  });
-  
-  const handleTab2ValuesChange = event => {
-    setTab2Values(
-      {...Tab2values,
-        [event.target.id]: event.target.value
+  class CheckoutProcess extends Component {
+    state = {
+      activeItem: "1",
+      tab3Disable: true,
+      tab2values:{name:"", 
+      phone: "",
+      email:"",
+      city: "",
+      neighborhood: "",
+      street: "",
+      building: "",
+      apartment: "",
       }
-    
-    ); 
+    };
+
+    toggle = tab => e => {
+      if (this.state.activeItem !== tab) {
+        this.setState({
+          activeItem: tab
+        });
+      }
+    };
+
+
+  handleTab3DisableChange(newValue) {
+    this.setState({tab3Disable: newValue});
+  }
+
+  
+  handletab2valuesChange = event => {
+    let newState = Object.assign({}, this.state);
+    newState.tab2values[event.target.id] = event.target.value;
+    this.setState(newState);
 
     if(event.target.value == "")
-      handleTab3DisableChange(event, true)
+      this.handleTab3DisableChange(true)
     else{
       let count = 0;
-      for (var key in Tab2values) {
-        debugger
-          if(Tab2values[key] != "" && key != event.target.id)
+      for (var key in this.state.tab2values) {
+        
+          if(this.state.tab2values[key] != "" && key != event.target.id)
             count += 1;
       }
-      debugger
-      if(count == 6)
-        handleTab3DisableChange(event, false)
+      
+      if(count == 7)
+        this.handleTab3DisableChange(false)
     }
   };
 
-  let cartItems = props.orderList;
-  let subtotal = 0;
-  
-  cartItems= cartItems.map(product => {
-  subtotal += (product.props.quantity * product.props.price)
-    return (
-      <TableRow>
-          <TableCell><img height="42" width="42" src={product.props.imageURL} /></TableCell>
-          <TableCell>{product.props.title}</TableCell>
-          <TableCell>{product.props.quantity}</TableCell>
-          <TableCell>{product.props.price}</TableCell>
-          <TableCell>{parseInt(product.props.quantity) * parseFloat(product.props.price)} tl</TableCell>
-      </TableRow>
-           );
-    });
-    
-  let view;
-  if (cartItems.length <= 0) {
-    view = <h4>Your cart is empty</h4>;
-  } else {
-    view = cartItems;
-  }
-    
-  let deliveryChargePercentage = subtotal > 100 ? 10 : 30;
-  let deliveryCharge = (subtotal * deliveryChargePercentage)/100; 
-  let total = deliveryCharge + subtotal;
-  const labelRef = React.useRef(null);
 
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Tabs  value={value} onChange={handleChange} aria-label="wrapped label tabs example">
-          <Tab value="one" label="Order List" wrapped {...a11yProps('one')}/>
-          <Tab value="two" label="Personal Information" wrapped {...a11yProps('two')} />
-          <Tab value="three" label="Confirm order" wrapped {...a11yProps('three')} disabled={tab3Disable} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index="one">
-       <Paper>
-           <Table>
-            <TableRow>
-                <TableCell></TableCell>
-                <TableCell>Product</TableCell>
-                <TableCell align="left">Quantity</TableCell>
-                <TableCell align="left">Price</TableCell>
-                <TableCell align="left">Total</TableCell>
-            </TableRow>
-            <TableBody>
-            {view}
-                <TableRow>
-                    <TableCell rowSpan={3} />
-                    <TableCell rowSpan={3} />
-                    <TableCell colSpan={2}>Subtotal</TableCell>
-                    <TableCell align="left">{subtotal} tl</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell>Delivery charge</TableCell>
-                    <TableCell align="left">{`${deliveryChargePercentage} %`}</TableCell>
-                    <TableCell align="left">{deliveryCharge} tl</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell colSpan={2}>Total</TableCell>
-                    <TableCell align="left">{total} tl</TableCell>
-                </TableRow>
-                </TableBody>
-           </Table>
-           <Typography variant="body2" gutterBottom>If you buy more than 100 tl, delivery charge will be 10%</Typography>
-       </Paper>
-      </TabPanel>
-      <TabPanel value={value} index="two">
-        <Paper>
-        <Grid
-        container
-        spacing={3}>
-            <Grid item xs={3}>
-              <TextField
-                required
-                id="name"
-                label="Name"
-                value={Tab2values.name}
-                margin="normal"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleTab2ValuesChange}
-              />
-              <TextField
-                required
-                id="phone"
-                label="Phone"
-                margin="normal"
-                value={Tab2values.phone}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleTab2ValuesChange}
-              />
-            </Grid>
-            <Grid item xs={3}>
-            <TextField
-                required
-                id="city"
-                label="City"
-                margin="normal"
-                value={Tab2values.city}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleTab2ValuesChange}
-              />
-              <TextField
-                required
-                id="neighborhood"
-                label="Neighborhood"
-                margin="normal"
-                value={Tab2values.neighborhood}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleTab2ValuesChange}
-              />
-              <TextField
-                required
-                id="street"
-                label="Street"
-                margin="normal"
-                value={Tab2values.street}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleTab2ValuesChange}
-              />
-              <TextField
-                required
-                id="building"
-                label="Building"
-                margin="normal"
-                value={Tab2values.building}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleTab2ValuesChange}
-              />
-              <TextField
-                required
-                id="apartment"
-                label="Apartment"
-                margin="normal"
-                value={Tab2values.apartment}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleTab2ValuesChange}
-              />
-            </Grid>
-            <Grid item xs={3}>
-            <TextField
-                id="date"
-                margin="normal"
-                type="date"
-                label="Date"
-                value={Tab2values.date}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                className={classes.textField}
-                onChange={handleTab2ValuesChange}
-              />
-              <TextField
-                id="time"
-                margin="normal"
-                type="time"
-                label="Time"
-                value={Tab2values.time}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleTab2ValuesChange}
-              />
-              <TextField
-                id="standard-read-only-input"
-                label="Note"
-                multiline
-                defaultValue="if you want your order now, do not enter date and time"
-                className={classes.textField}
-                margin="normal"
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-            </Grid>
-        </Grid>
-        </Paper>
-      </TabPanel>
-      <TabPanel value={value} index="three">
-        <paper>
-          <Grid
-          container
-          direction="column"
-          justify="space-between"
-          alignItems="stretch">
-            <Grid item>
-              <Typography variant="h6">
-                The total amout : {total} tl
-              </Typography>
-            </Grid>
-            <Grid item>
-            <Typography variant="h6">
-                {Tab2values.name} , Tel: {Tab2values.phone}
-              </Typography>
-              <Typography variant="h6">
-                Your address : {Tab2values.neighborhood} mahellesi, {Tab2values.street} caddesi, 
-              </Typography>
-              <Typography variant="h6">
-                {Tab2values.building} evler, daire {Tab2values.apartment}, {Tab2values.city} city, Turkey
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Button variant="contained" color="secondary">Place order</Button>
-            </Grid>
-          </Grid>
-        </paper>
-      </TabPanel>
-    </div>
-  );
+  handleCreateTableCell(){
+    let cartItems = this.props.orderList;
+    let subtotal = 0;
+    
+    cartItems= cartItems.map(product => {
+    subtotal += (product.props.quantity * product.props.price)
+      return (
+        <tr>
+          <td><img height="42" width="42" src={product.props.imageURL} /></td>
+          <td>{product.props.title}</td>
+          <td>{product.props.quantity}</td>
+          <td>{product.props.price}</td>
+          <td>{parseInt(product.props.quantity) * parseFloat(product.props.price)} TRY</td>
+        </tr>
+            );
+      });
+      let deliveryChargePercentage = subtotal > 100 ? 10 : 30;
+      let deliveryCharge = (subtotal * deliveryChargePercentage)/100; 
+      let total = deliveryCharge + subtotal;
+
+      let finalObject = [cartItems,subtotal,deliveryChargePercentage,deliveryCharge,total];
+    return finalObject;
+
+  }
+  
+  createOrder = () => {
+    const updateURL =  `https://firestore.googleapis.com/v1/projects/alo-talabati/databases/(default)/documents/checkout`;    
+      fetch(updateURL, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        fields: {
+          "name": {stringValue: JSON.stringify(this.state.tab2values.name)},
+          "phone": {stringValue: JSON.stringify(this.state.tab2values.phone)},
+          "email": {stringValue: JSON.stringify(this.state.tab2values.email)},
+          "Address": {stringValue: JSON.stringify(this.state.tab2values.neighborhood + "Mahalle," + this.state.tab2values.street + "Street,"
+          + this.state.tab2values.building + ", apartment:" + this.state.tab2values.apartment + "," + this.state.tab2values.city)}
+          }
+      })
+  });
+  debugger
+  this.props.close();
 }
 
+    render() {
+      let list = this.handleCreateTableCell();
+      return (
+        <MDBContainer style={{zIndex:200}}>
+        <MDBNav className="nav-tabs mt-5">
+          <MDBNavItem>
+            <MDBNavLink to="#" active={this.state.activeItem === "1"} onClick={this.toggle("1")} role="tab" >
+              Order List
+            </MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem>
+            <MDBNavLink to="#" active={this.state.activeItem === "2"} onClick={this.toggle("2")} role="tab" >
+              Personal Information
+            </MDBNavLink>
+          </MDBNavItem>
+          <MDBNavItem>
+            <MDBNavLink to="#" active={this.state.activeItem === "3"} onClick={this.toggle("3")} role="tab" disabled={this.state.tab3Disable}>
+              Confirm order
+            </MDBNavLink>
+          </MDBNavItem>
+        </MDBNav>
+        <MDBTabContent activeItem={this.state.activeItem} >
+          <MDBTabPane tabId="1" role="tabpanel">
+            <MDBTable >
+              <MDBTableHead color="warning-color" textWhite>
+                <tr>
+                  <th></th>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>Total</th>
+                </tr>
+              </MDBTableHead>
+              <MDBTableBody>
+              {list[0]}
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Subtotal</td>
+                <td></td>
+                <td>{list[1]} TRY</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Delivery Charge</td>
+                <td>{list[2]}%</td>
+                <td>{list[3]} TRY</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td></td>
+                <td>{list[4]} TRY</td>
+              </tr>
+              </MDBTableBody>
+            </MDBTable>
+            If you buy more than 100 TRY, delivery charge will be 10%
+          </MDBTabPane>
+          <MDBTabPane tabId="2" role="tabpanel">
+            <MDBContainer>
+              <MDBRow>
+                <MDBCol>
+                  <MDBInput id="name" label="Name" outline size="md" onChange={this.handletab2valuesChange} />
+                  <MDBInput id="phone" label="Phone" outline size="md" onChange={this.handletab2valuesChange} />
+                  <MDBInput id="email" type="email" label="Email" outline size="md" onChange={this.handletab2valuesChange} />
+                </MDBCol>
+                <MDBCol>
+                  <MDBInput id="city" label="City" outline size="md" onChange={this.handletab2valuesChange}/>
+                  <MDBInput id="neighborhood" label="Neighborhood" outline size="md" onChange={this.handletab2valuesChange}/>
+                  <MDBInput id="street" label="Street" outline size="md" onChange={this.handletab2valuesChange}/>
+                  <MDBInput id="building" label="Building" outline size="md" onChange={this.handletab2valuesChange} />
+                  <MDBInput id="apartment" label="Apartment" outline size="md" onChange={this.handletab2valuesChange}/>
+                </MDBCol>
+              </MDBRow>
+            </MDBContainer>
+          </MDBTabPane>
+          <MDBTabPane tabId="3" role="tabpanel">
+          <MDBContainer>
+              <MDBRow>
+                <MDBCol>
+                  <h4>The total amout : {list[4]} TRY </h4>
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol>
+                 <h4>Your address :</h4>
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol>
+                  <h6>{this.state.tab2values.name}</h6>
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol>
+                  <h6>{this.state.tab2values.phone}</h6>
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol>
+                  <h6>{this.state.tab2values.neighborhood} Mahalle</h6>
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol>
+                  <h6>{this.state.tab2values.street} Street. {this.state.tab2values.building}. D:{this.state.tab2values.apartment}</h6>
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol>
+                  <h6>{this.state.tab2values.city}</h6>
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol>
+                  <MDBBtn onClick={this.createOrder} color="warning">PLACE ORDER</MDBBtn>
+                </MDBCol>
+              </MDBRow>
+            </MDBContainer>
+          </MDBTabPane>
+        </MDBTabContent>
+      </MDBContainer>
+    );
+  }
+}
 export default CheckoutProcess;
