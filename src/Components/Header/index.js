@@ -87,14 +87,18 @@ const ShoppingCartRoute = () => <ShoppingCart cart={this.props.cart} removeFromC
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
             <MDBNavItem>
-           <MDBNavLink to="/" exact style={link} activeStyle={{background: 'darkorange'}} >Home</MDBNavLink>
+           <MDBBtn href="/" exact color="warning" >Home</MDBBtn>
             </MDBNavItem>
             <MDBNavItem>
-            <MDBNavLink to="/About" exact style={link} activeStyle={{background: 'darkorange'}}>About</MDBNavLink>
+            <MDBBtn href="/About" exact color="warning">About</MDBBtn>
           
             </MDBNavItem>
             <MDBNavItem>
             <MDBBtn href="/ContuctUs" exact color="warning">Contuct Us</MDBBtn>
+              
+            </MDBNavItem>
+            <MDBNavItem>
+            <MDBBtn href="/Feedback" exact color="warning">Feedback</MDBBtn>
               
             </MDBNavItem>
             <MDBNavItem>
