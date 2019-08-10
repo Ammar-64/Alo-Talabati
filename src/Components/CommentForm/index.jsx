@@ -6,34 +6,63 @@ class CommentForm extends React.Component{
         super(props);
         this.state = {
     
-          comment: {
+          comment: {fields:{
             name: "",
             message: ""
+          }
           },
           error:false,
           commentsList:null     
         };
-        this.handleFieldChange = this.handleFieldChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleMessageChange = this.handleMessageChange.bind(this);
       }
 
      
     
       
-      handleFieldChange = event => {
-          
-        const { value, id } = event.target;
+    //   handleFieldChange = event => {
+    //       debugger
+    //     const { value, id } = event.target;
     
-        this.setState({
-          ...this.state,
-          comment: {
-            ...this.state.comment,
-            [id]: value
+    //     this.setState({
+    //       ...this.state,
+    //       comment: {
+    //         ...this.state.comment.fields,
+    //         [id]: value
+    //       }
+    //     });
+    // };
+
+    handleNameChange = event => {
+      debugger
+      const value = event.target.value
+      this.setState(prevState => ({
+        comment: {
+          ...prevState.comment,           // copy all other key-value pairs of food object
+          fields: {                     // specific object of food object
+            ...prevState.comment.fields,   // copy all pizza key-value pairs
+            name: value       // update value of specific key
           }
-        });
+        }
+      }))
+    }
+
+    handleMessageChange = event => {
+          const value = event.target.value
+      this.setState(prevState => ({
+        comment: {
+          ...prevState.comment,           // copy all other key-value pairs of food object
+          fields: {                     // specific object of food object
+            ...prevState.comment.fields,   // copy all pizza key-value pairs
+            message: value       // update value of specific key
+          }
+        }
+      }))
     };
 
     isFormValid() {
-        return this.state.comment.name !== "" && this.state.comment.message !== "";
+        return this.state.comment.fields.name !== "" && this.state.comment.fields.message !== "";
       }
 
     CreateComment = () => {
@@ -55,6 +84,12 @@ class CommentForm extends React.Component{
               }
           })
       });
+      let { comment } = this.state;
+      this.props.addComment(comment);
+      this.setState({
+        comment: { ...comment, fields:{ name: "" ,message: "" } }
+      });
+
      }
 
     render(){ 
@@ -63,8 +98,8 @@ class CommentForm extends React.Component{
   
     <MDBRow>
         <MDBCol md="6" className="mb-lg-0 my-4">
-        <MDBInput id="name" label="Name" outline size="md" onChange={this.handleFieldChange}/>
-        <MDBInput id="message" label="Comment" outline size="md" onChange={this.handleFieldChange} />
+        <MDBInput id="name" label="Name" outline size="md" onChange={this.handleNameChange}/>
+        <MDBInput id="message" label="Comment" outline size="md" onChange={this.handleMessageChange} />
 {this.state.error && <p>All fields are required</p>}
         <MDBBtn onClick={this.CreateComment}>Submit</MDBBtn>
         </MDBCol>

@@ -6,11 +6,16 @@ import {MDBRow, MDBCol, MDBContainer} from "mdbreact";
 const BASE_URL = 'https://firestore.googleapis.com/v1';
 
 class Feedback extends React.Component {
-    state = {
-        comments: null,
-        
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          comments: [],
+          loading: false
+        };
+    
+        this.addComment = this.addComment.bind(this);
       }
-
     componentDidMount() {
     this.fetchComments();
   }
@@ -20,6 +25,13 @@ class Feedback extends React.Component {
     const response = await fetch(url);
     const json = await response.json();
     this.setState({ comments: json.documents });
+    debugger
+  }
+  addComment(comment) {
+    this.setState({
+      loading: false,
+      comments: [comment, ...this.state.comments]
+    });
   }
 
   render() {
@@ -35,8 +47,7 @@ class Feedback extends React.Component {
             <MDBContainer>
                 <MDBRow>
                     <MDBCol>
-                        <CommentForm/>
-                    </MDBCol>
+                    <CommentForm addComment={this.addComment} />                    </MDBCol>
                    
                     <MDBCol>
                         {views}
