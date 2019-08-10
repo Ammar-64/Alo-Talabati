@@ -35,7 +35,7 @@ class CommentForm extends React.Component{
     // };
 
     handleNameChange = event => {
-      debugger
+      
       const value = event.target.value
       this.setState(prevState => ({
         comment: {
@@ -79,11 +79,12 @@ class CommentForm extends React.Component{
           },
           body: JSON.stringify({
             fields: {
-              "name": {stringValue: JSON.stringify(this.state.comment.name)},
-              "message": {stringValue: JSON.stringify(this.state.comment.message)},
+              "name": {stringValue: JSON.stringify(this.state.comment.fields.name)},
+              "message": {stringValue: JSON.stringify(this.state.comment.fields.message)},
               }
           })
       });
+      
       let { comment } = this.state;
       this.props.addComment(comment);
       this.setState({

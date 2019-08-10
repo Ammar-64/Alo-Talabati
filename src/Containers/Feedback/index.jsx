@@ -25,13 +25,17 @@ class Feedback extends React.Component {
     const response = await fetch(url);
     const json = await response.json();
     this.setState({ comments: json.documents });
-    debugger
+    
   }
   addComment(comment) {
+      debugger
+      this.state.comments.push(comment);
+      
     this.setState({
       loading: false,
-      comments: [comment, ...this.state.comments]
+      comments: this.state.comments
     });
+    
   }
 
   render() {
@@ -39,6 +43,7 @@ class Feedback extends React.Component {
       return (<h1>Loading ...</h1>);
     }
     else{
+        
         let views = this.state.comments === 0 ? <h1>Be the first</h1> :<CommentsList
         comments={this.state.comments}
         />;
