@@ -70,6 +70,9 @@ render() {
            <MDBNavLink to="/" exact style={link} activeStyle={{background: 'darkorange'}} >Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
+            <MDBNavLink to="/Feedback" exact style={link} activeStyle={{background: 'darkorange'}}>Feedback</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
             <MDBNavLink to="/About" exact style={link} activeStyle={{background: 'darkorange'}}>About</MDBNavLink>
           
             </MDBNavItem>
@@ -80,7 +83,7 @@ render() {
             <MDBNavItem>
               <MDBDropdown>
          
-                <MDBDropdownToggle color="warning" caret>
+                <MDBDropdownToggle color="warning" >
                   <span>Categories</span>
                 </MDBDropdownToggle>
 
