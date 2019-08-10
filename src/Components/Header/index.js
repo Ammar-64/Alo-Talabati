@@ -6,6 +6,21 @@ MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBBtn, MDBInp
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Logo from '../../img/logo.png'
 import { NavLink } from 'react-router-dom';
+import ShoppingCart from '../ShoppingCart';
+import * as firebase from 'firebase';
+import 'firebase/database';
+import { debug } from "util";
+const firebaseConfig = {
+  apiKey: "AIzaSyBnD1RdeD5iNw_y3cahx8ajMebkDyT_dH8",
+  authDomain: "alo-talabati.firebaseapp.com",
+  databaseURL: "https://alo-talabati.firebaseio.com",
+  projectId: "alo-talabati",
+  storageBucket: "alo-talabati.appspot.com",
+  messagingSenderId: "753646471377",
+  appId: "1:753646471377:web:a40c87b191bbb110"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
 const link = {
   width: '120px',
@@ -47,19 +62,54 @@ const Dropdown = [
 }
 
 ]
+
 class Navbar extends Component {
 state = {
   isOpen: false
 };
+constructor(){
+  super();
+  this.state = {searchInput: ''};
+  this.search = this.search.bind(this);
+ }
 
 toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
+search = (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault()
+    console.log('searchProducts')
+    this.searchProducts({
+      search: this.state.value
+    })
+  }
+}
+onChange = e => {
+  this.setState({ value: e.target.value })
+}
+searchProducts = async ({
+  search = '',
+  limit = 50,
+} = {}) => {
+  debugger
+  const snapshot = await db.collection('Poducts')
+    .where('name', '==', search)
+    .orderBy('name')
+    .limit(limit)
+    .get();
+    debugger
+  return snapshot.docs;
+};
 
 
-render() {
+
+render(){
+   
+const ShoppingCartRoute = () => <ShoppingCart cart={this.props.cart} removeFromCart={this.props.removeFromCart}/>
+
   return (
-      <MDBNavbar color='white' light outline expand="md">
+      <MDBNavbar color='white' scrolling fixed="top" light outline expand="md">
         <MDBNavbarBrand>
           <NavLink to="/" exact><img src={Logo} alr='Alo-Talabati' className='w-50'/></NavLink>
         </MDBNavbarBrand>
@@ -94,18 +144,25 @@ render() {
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavItem>
+            <MDBNavItem>
+           
+            </MDBNavItem>
           </MDBNavbarNav>
           <MDBNavbarNav right>
+          <MDBNavItem>
+
+          </MDBNavItem>
             <MDBNavItem>
-              <MDBFormInline waves>
-                <div className="md-form my-0">               
-                <MDBInput hint="Search" type="text" containerClass="active-pink active-pink-2 mt-0 mb-3" />   
+            <form class="form-inline">
+                <div class="md-form my-0">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" onChange={this.onChange} onKeyDown={this.search}></input>
                 </div>
-              </MDBFormInline>
+              </form>
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
+      
     );
   }
 }

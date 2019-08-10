@@ -101,7 +101,7 @@ import React, { Component } from "react";
     render() {
       let list = this.handleCreateTableCell();
       return (
-        <MDBContainer>
+        <MDBContainer style={{zIndex:200}}>
         <MDBNav className="nav-tabs mt-5">
           <MDBNavItem>
             <MDBNavLink to="#" active={this.state.activeItem === "1"} onClick={this.toggle("1")} role="tab" >
@@ -122,7 +122,7 @@ import React, { Component } from "react";
         <MDBTabContent activeItem={this.state.activeItem} >
           <MDBTabPane tabId="1" role="tabpanel">
             <MDBTable >
-              <MDBTableHead color="primary-color" textWhite>
+              <MDBTableHead color="warning-color" textWhite>
                 <tr>
                   <th></th>
                   <th>Product</th>
@@ -215,7 +215,7 @@ import React, { Component } from "react";
               </MDBRow>
               <MDBRow>
                 <MDBCol>
-                  <MDBBtn onClick={this.createOrder}>PLACE ORDER</MDBBtn>
+                  <MDBBtn onClick={this.createOrder} color="warning">PLACE ORDER</MDBBtn>
                 </MDBCol>
               </MDBRow>
             </MDBContainer>

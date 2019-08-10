@@ -5,6 +5,10 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import "./assets/scss/mdb.scss";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import * as firebase from 'firebase';
+
+
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
