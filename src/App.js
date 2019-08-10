@@ -83,6 +83,8 @@ class App extends React.Component {
     const ShoppingCartRoute = () => <ShoppingCart cart={this.state.cart} removeFromCart={this.removeFromCart}/>
     const Grocery = () => <Product type={'Products'} cart={this.state.cart} addToCart={this.addToCart}/>
     const BabyCare = () => <Product type={'BabyProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+    const Drinks = () => <Product type={'DrinksProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
+    const Gifts = () => <Product type={'GiftsProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
     const Food = () => <Product type={'FoodProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
     const Toys = () => <Product type={'ToysProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
     const Flowers = () => <Product type={'FlowersProducts'} cart={this.state.cart} addToCart={this.addToCart}/>
@@ -103,6 +105,8 @@ class App extends React.Component {
           <Route path="/" component={ShoppingCartRoute} />
           <Route exact path="/" component={Categories} />          
           <Route exact path="/Grocery" component={Grocery} />
+          <Route exact path="/Drinks" component={Drinks} />
+          <Route exact path="/Gifts" component={Gifts} />
           <Route exact path="/BabyCare" component={BabyCare} />
           <Route exact path="/Food" component={Food} />
           <Route exact path="/Toys" component={Toys} />
