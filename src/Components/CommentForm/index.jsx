@@ -99,10 +99,10 @@ class CommentForm extends React.Component{
   
     <MDBRow>
         <MDBCol md="6" className="mb-lg-0 my-4">
-        <MDBInput id="name" label="Name" outline size="md" onChange={this.handleNameChange}/>
-        <MDBInput id="message" label="Comment" outline size="md" onChange={this.handleMessageChange} />
+        <MDBInput id="name" label="Name" outline size="md" background="white" onChange={this.handleNameChange}/>
+        <MDBInput id="message" label="Comment" outline size="md" background="white" onChange={this.handleMessageChange} />
 {this.state.error && <p>All fields are required</p>}
-        <MDBBtn onClick={this.CreateComment}>Submit</MDBBtn>
+        <MDBBtn color="warning" onClick={this.CreateComment}>Submit</MDBBtn>
         </MDBCol>
     </MDBRow>
   );

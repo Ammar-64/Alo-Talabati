@@ -90,11 +90,11 @@ const ShoppingCartRoute = () => <ShoppingCart cart={this.props.cart} removeFromC
            <MDBBtn href="/" exact color="warning" >Home</MDBBtn>
             </MDBNavItem>
             <MDBNavItem>
-            <MDBBtn href="/About" exact color="warning">About</MDBBtn>
+            <MDBBtn href="/About" exact color="warning">About Us</MDBBtn>
           
             </MDBNavItem>
             <MDBNavItem>
-            <MDBBtn href="/ContuctUs" exact color="warning">Contuct Us</MDBBtn>
+            <MDBBtn href="/ContuctUs" exact color="warning">Contact Us</MDBBtn>
               
             </MDBNavItem>
             <MDBNavItem>

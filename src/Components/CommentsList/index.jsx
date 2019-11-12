@@ -7,7 +7,7 @@ class CommentsList extends React.Component{
 
   render(){
     const {comments} = this.props;
-    debugger
+    
      return (
           <MDBContainer className="px-n5" >  
           <MDBRow className ="justify-content-md-center"> 
@@ -30,7 +30,7 @@ class CommentsList extends React.Component{
               }
 
               return (
-                 <MDBCol md="3">
+                 <MDBCol md="6">
                   <Comment
                   name={name}
                   message={message} 
